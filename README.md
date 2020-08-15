@@ -47,19 +47,99 @@ The goal of this assignment is to continue to recreate the demonstrations given 
 
 ### Required Tasks
 
-- [ ] Get the Memorize game working as demonstrated in lectures 1 through 4. Type in all the code. Do not copy/paste from anywhere. 
-- [ ] Your game should still shuffle the cards. 
-- [ ] Architect the concept of a “theme” into your game. A theme consists of a name for the theme, a set of emoji to use, a number of cards to show (which, for at least one, but not all themes, should be random), and an appropriate color to use to draw (e.g. orange would be appropriate for a Halloween theme). 
-- [ ] Support at least 6 different themes in your game. 
-- [ ] A new theme should be able to be added to your game with a single line of code.
-- [ ] Add a “New Game” button to your UI which begins a brand new game. This new game should have a randomly chosen theme. You can put this button anywhere you think looks best in your UI. 
-- [ ] Show the theme’s name somewhere in your UI. 8. Keep score in your game by giving 2 points for every match and penalizing 1 point for every previously seen card that is involved in a mismatch. 
-- [ ] Display the score in your UI in whatever way you think looks best. 
-- [ ] Your UI should work in portrait or landscape on any iOS device. The cards can have any aspect ratio you’d like. This probably will not require any work on your part (that’s part of the power of SwiftUI), but be sure to continue to experiment with running on different simulators in Xcode to be sure.
+- [x] Get the Memorize game working as demonstrated in lectures 1 through 4. Type in all the code. Do not copy/paste from anywhere. 
+
+- [x] Your game should still shuffle the cards. 
+
+- [x] Architect the concept of a “theme” into your game. A theme consists of a name for the theme, a set of emoji to use, a number of cards to show (which, for at least one, but not all themes, should be random), and an appropriate color to use to draw (e.g. orange would be appropriate for a Halloween theme). 
+
+  ```swift
+  struct MemoryTheme {
+      var name: String
+      var color: ThemeColor
+      var emojis: [String]
+  
+      static let halloween  = MemoryTheme(name: "Halloween", color: .orange, emojis: ["👻", "🎃", "🕷", "🧙", "💀"].shuffled())
+      static let christmas = MemoryTheme(name: "Christmas", color: .red, emojis: ["🎄", "🤶", "🎅", "🎁"].shuffled())
+      static let winter = MemoryTheme(name: "Winter", color: .lightblue, emojis: ["🥶", "❄️", "☃️", "🧦", "🌨", "⛸", "🏂"].shuffled())
+      static let beach = MemoryTheme(name: "Beach", color: .yellow, emojis:  ["👙", "🏝", "⛱", "🩳", "🩱", "🗿"].shuffled())
+      static let anmimals = MemoryTheme(name: "Animals", color: .green, emojis: ["🐶", "🐱", "🐷", "🐵", "🐔", "🦇", "🐍", ""].shuffled())
+      static let alcohol = MemoryTheme(name: "Alcohol!", color: .gray, emojis:  ["🥃", "🥂", "🍷", "🍺", "🍶", "🍸", "🍹", "🍾"].shuffled())
+  
+      static let themes = [halloween, christmas, winter, beach, anmimals, alcohol]
+  
+      enum ThemeColor {
+          case orange
+          case red
+          case lightblue
+          case yellow
+          case green
+          case gray
+      }
+  }
+  ```
+
+  
+
+- [x] Support at least 6 different themes in your game. 
+
+  --> see above
+
+- [x] A new theme should be able to be added to your game with a single line of code.
+
+  ```swift
+  init() {
+          self.theme = MemoryTheme.themes.randomElement()!
+          self.model = EmojiMemoryGame.createMemoryGame(with: theme)
+      }
+  ```
+
+- [x] Add a “New Game” button to your UI which begins a brand new game. This new game should have a randomly chosen theme. You can put this button anywhere you think looks best in your UI. 
+
+  ```swift
+  Button("New Game") {
+                      withAnimation(.easeInOut(duration: 0.5)){
+                          viewModel.newGame()
+                      }
+  ```
+
+- [x] Show the theme’s name somewhere in your UI. 8. Keep score in your game by giving 2 points for every match and penalizing 1 point for every previously seen card that is involved in a mismatch. 
+
+  ```swift
+  .navigationBarTitle(viewModel.theme.name, displayMode: .inline)
+  ```
+
+  ```swift
+  mutating func choose(card: Card){
+          if let chosenIndex = cards.firstIndex(matching: card), !cards[chosenIndex].isFaceUp, !cards[chosenIndex].isMatched{
+              if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard{
+                  if cards[chosenIndex].content == cards[potentialMatchIndex].content{
+                      cards[chosenIndex].isMatched = true
+                      cards[potentialMatchIndex].isMatched = true
+                      score += 2 - numberOfMismatchedCards
+                      numberOfMismatchedCards = 0
+                  }else {
+                      numberOfMismatchedCards += 2
+                  }
+                  cards[chosenIndex].isFaceUp = true
+              }else{
+                  indexOfTheOneAndOnlyFaceUpCard = chosenIndex
+              }
+          }
+      }
+  ```
+
+- [x] Display the score in your UI in whatever way you think looks best. 
+
+  ```swift
+  .navigationBarItems(trailing: Text("Score: \(viewModel.score)"))
+  ```
+
+- [x] Your UI should work in portrait or landscape on any iOS device. The cards can have any aspect ratio you’d like. This probably will not require any work on your part (that’s part of the power of SwiftUI), but be sure to continue to experiment with running on different simulators in Xcode to be sure.
 
 
 
 ### Extra Credit
 
 - [ ] Support a gradient as the “color” for a theme. Hint: fill() can take a gradient as its argument rather than a color. 
-- [x] Modify the scoring system to give more points for choosing cards more quickly. For example, maybe you get max(10 - (number of seconds since last card was chosen), 1) x (the number of points you would have otherwise earned or been penalized with). (This is just an example, be creative!). You will definitely want to familiarize yourself with the Date struct.
+- [ ] Modify the scoring system to give more points for choosing cards more quickly. For example, maybe you get max(10 - (number of seconds since last card was chosen), 1) x (the number of points you would have otherwise earned or been penalized with). (This is just an example, be creative!). You will definitely want to familiarize yourself with the Date struct.

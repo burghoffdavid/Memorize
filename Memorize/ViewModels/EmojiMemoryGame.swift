@@ -14,7 +14,6 @@ final class EmojiMemoryGame: ObservableObject{
 
     init() {
         self.theme = MemoryTheme.themes.randomElement()!
-
         self.model = EmojiMemoryGame.createMemoryGame(with: theme)
     }
 
@@ -31,6 +30,9 @@ final class EmojiMemoryGame: ObservableObject{
     //MARK: - Access to the Model
     var cards: Array<MemoryGame<String>.Card>{
         model.cards
+    }
+    var score: Int {
+        model.score
     }
 
     //MARK: - Intents

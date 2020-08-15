@@ -24,12 +24,9 @@ struct MemoryTheme {
     enum ThemeColor {
         case orange
         case red
-        case required
         case lightblue
         case yellow
         case green
         case gray
     }
-
-
 }

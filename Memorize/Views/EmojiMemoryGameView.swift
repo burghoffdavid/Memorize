@@ -24,8 +24,6 @@ struct EmojiMemoryGameView: View {
             return .blue
         case .yellow:
             return .yellow
-        case .required:
-            return .white
         }
     }
 
@@ -51,6 +49,7 @@ struct EmojiMemoryGameView: View {
                 }
             }
             .navigationBarTitle(viewModel.theme.name, displayMode: .inline)
+            .navigationBarItems(trailing: Text("Score: \(viewModel.score)"))
         }
     }
 }
