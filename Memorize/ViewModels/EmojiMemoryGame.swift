@@ -14,13 +14,17 @@ final class EmojiMemoryGame: ObservableObject{
 
     init() {
         self.theme = MemoryTheme.themes.randomElement()!
+        if theme.json != nil, let themeDecoded = try? JSONDecoder().decode(MemoryTheme.self, from: theme.json!){
+            print(themeDecoded)
+            print("JSON PRINTOUT: \(String(data: theme.json!, encoding: .utf8)!)")
+        }
         self.model = EmojiMemoryGame.createMemoryGame(with: theme)
     }
 
     // static: ability call a function form the TYPE, not an Instance!
     private static func createMemoryGame (with theme: MemoryTheme) -> MemoryGame<String>{
         let emojis = theme.emojis.shuffled()
-
+        
         return MemoryGame<String>(numberOfMemoryPairs: emojis.count){pairIndex in
             return emojis[pairIndex]
         }
@@ -48,6 +52,7 @@ final class EmojiMemoryGame: ObservableObject{
             newTheme = MemoryTheme.themes.randomElement()!
         }
         theme = newTheme
+        print("JSON PRINTOUT: \(String(data: theme.json!, encoding: .utf8)!)")
         model = Self.createMemoryGame(with: theme)
     }
 
