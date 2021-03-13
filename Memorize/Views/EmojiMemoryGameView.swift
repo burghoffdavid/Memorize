@@ -10,22 +10,12 @@ import SwiftUI
 struct EmojiMemoryGameView: View {
 
     @ObservedObject var viewModel: EmojiMemoryGame
-    var themeColor: Color{
-        switch viewModel.theme.color {
-        case .red:
-            return .red
-        case .orange:
-            return .orange
-        case .gray:
-            return .gray
-        case .green:
-            return .green
-        case .lightblue:
-            return .blue
-        case .yellow:
-            return .yellow
-        }
-    }
+//    var themeColor: Color{
+//        Color(UIColor.RGB(red: CGFloat(viewModel.theme.colorRGB.red),
+//                          green: CGFloat(viewModel.theme.colorRGB.green),
+//                          blue: CGFloat(viewModel.theme.colorRGB.blue),
+//                          alpha: CGFloat(viewModel.theme.colorRGB.alpha)))
+//    }
 
     var body: some View {
         NavigationView{
@@ -41,24 +31,25 @@ struct EmojiMemoryGameView: View {
                             .padding(5)
                 }
                 .padding()
-                .foregroundColor(themeColor)
+                .foregroundColor(viewModel.theme.color)
                 Button("New Game") {
                     withAnimation(.easeInOut(duration: 0.5)){
                         viewModel.newGame()
                     }
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarTitle(viewModel.theme.name, displayMode: .inline)
             .navigationBarItems(trailing: Text("Score: \(viewModel.score)"))
         }
     }
 }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
-    }
-}
+//
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EmojiMemoryGameView(viewModel: EmojiMemoryGame(theme: MemoryTheme())
+//    }
+//}
 
 
 struct CardView: View {
@@ -104,6 +95,7 @@ struct CardView: View {
                 .transition(AnyTransition.scale)
                 }
             }
+        
     }
 
     func fontSize (for size: CGSize) -> CGFloat {

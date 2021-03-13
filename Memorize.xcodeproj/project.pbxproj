@@ -22,6 +22,9 @@
 		E0D5A33324D59FA600F177B9 /* Array+Only.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5A33224D59FA600F177B9 /* Array+Only.swift */; };
 		E0D5A33524D5A9EA00F177B9 /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5A33424D5A9EA00F177B9 /* Pie.swift */; };
 		E0D5A33724D5AEED00F177B9 /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5A33624D5AEED00F177B9 /* Cardify.swift */; };
+		E0F280B125FCC0BC00667979 /* MemoryThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F280B025FCC0BC00667979 /* MemoryThemeStore.swift */; };
+		E0F280B625FCC69200667979 /* ThemeChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F280B525FCC69200667979 /* ThemeChooserView.swift */; };
+		E0F280B925FCF3D200667979 /* Sequence+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F280B825FCF3D200667979 /* Sequence+Hashable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		E0D5A33224D59FA600F177B9 /* Array+Only.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Only.swift"; sourceTree = "<group>"; };
 		E0D5A33424D5A9EA00F177B9 /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
 		E0D5A33624D5AEED00F177B9 /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
+		E0F280B025FCC0BC00667979 /* MemoryThemeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryThemeStore.swift; sourceTree = "<group>"; };
+		E0F280B525FCC69200667979 /* ThemeChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChooserView.swift; sourceTree = "<group>"; };
+		E0F280B825FCF3D200667979 /* Sequence+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Hashable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +67,7 @@
 				E02D1D2824D5916400F7E598 /* Array+Identifiable.swift */,
 				E0D5A33224D59FA600F177B9 /* Array+Only.swift */,
 				E07959B525FA879B00EBCC85 /* UIColor+RGBA.swift */,
+				E0F280B825FCF3D200667979 /* Sequence+Hashable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -112,6 +119,7 @@
 				E09E65DE24D586B000FD2873 /* Grid.swift */,
 				E09E65E224D58C0100FD2873 /* GridLayout.swift */,
 				E0D5A33424D5A9EA00F177B9 /* Pie.swift */,
+				E0F280B525FCC69200667979 /* ThemeChooserView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -119,6 +127,7 @@
 		E04C3A7124D47E1E00CEA4FB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E07F147724E551CB00F171FC /* MemoryTheme.swift */,
 				E04C3A6D24D47D0800CEA4FB /* MemoryGame.swift */,
 				E04C3A6F24D47D6000CEA4FB /* Card.swift */,
 			);
@@ -129,7 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				E04C3A7324D47E4200CEA4FB /* EmojiMemoryGame.swift */,
-				E07F147724E551CB00F171FC /* MemoryTheme.swift */,
+				E0F280B025FCC0BC00667979 /* MemoryThemeStore.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -207,14 +216,17 @@
 				E0D5A33524D5A9EA00F177B9 /* Pie.swift in Sources */,
 				E04C3A6E24D47D0800CEA4FB /* MemoryGame.swift in Sources */,
 				E04C3A6024D46FE400CEA4FB /* EmojiMemoryGameView.swift in Sources */,
+				E0F280B625FCC69200667979 /* ThemeChooserView.swift in Sources */,
 				E04C3A5E24D46FE400CEA4FB /* MemorizeApp.swift in Sources */,
 				E0D5A33324D59FA600F177B9 /* Array+Only.swift in Sources */,
 				E07959B625FA879B00EBCC85 /* UIColor+RGBA.swift in Sources */,
 				E04C3A7024D47D6000CEA4FB /* Card.swift in Sources */,
 				E04C3A7424D47E4200CEA4FB /* EmojiMemoryGame.swift in Sources */,
 				E07F147824E551CB00F171FC /* MemoryTheme.swift in Sources */,
+				E0F280B125FCC0BC00667979 /* MemoryThemeStore.swift in Sources */,
 				E02D1D2924D5916400F7E598 /* Array+Identifiable.swift in Sources */,
 				E09E65E324D58C0100FD2873 /* GridLayout.swift in Sources */,
+				E0F280B925FCF3D200667979 /* Sequence+Hashable.swift in Sources */,
 				E09E65DF24D586B000FD2873 /* Grid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
