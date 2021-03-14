@@ -115,8 +115,7 @@ final class MemoryThemeStore: ObservableObject{
     
     
     func newTheme(){
-        let newTheme = MemoryTheme(name: "Untitled", emojis: [], colorRGB: UIColor.gray.rgb)
-        themes.append(newTheme)
+        themes.append(MemoryTheme.defaultTheme)
     }
     
     func deleteTheme(theme: MemoryTheme){

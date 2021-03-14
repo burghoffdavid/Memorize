@@ -33,6 +33,8 @@ struct MemoryTheme: Codable, Identifiable {
         self.numberOfPairsToShow = numberOfPairsToShow ?? emojis.count
     }
 
+    static let defaultTheme = MemoryTheme(name: "Untitled", emojis: ["😀"], colorRGB: UIColor(.orange).rgb)
+    
 //    static let halloween  = MemoryTheme(name: "Halloween", color: .orange, emojis: ["👻", "🎃", "🕷", "🧙", "💀"].shuffled())
 //    static let christmas = MemoryTheme(name: "Christmas", color: .red, emojis: ["🎄", "🤶", "🎅", "🎁"].shuffled())
 //    static let winter = MemoryTheme(name: "Winter", color: .lightblue, emojis: ["🥶", "❄️", "☃️", "🧦", "🌨", "⛸", "🏂"].shuffled())

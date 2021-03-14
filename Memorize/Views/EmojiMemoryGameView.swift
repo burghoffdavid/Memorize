@@ -10,13 +10,8 @@ import SwiftUI
 struct EmojiMemoryGameView: View {
 
     @ObservedObject var viewModel: EmojiMemoryGame
-//    var themeColor: Color{
-//        Color(UIColor.RGB(red: CGFloat(viewModel.theme.colorRGB.red),
-//                          green: CGFloat(viewModel.theme.colorRGB.green),
-//                          blue: CGFloat(viewModel.theme.colorRGB.blue),
-//                          alpha: CGFloat(viewModel.theme.colorRGB.alpha)))
-//    }
-
+    @State private var showGameWonAlert = false
+    
     var body: some View {
         NavigationView{
             VStack{
@@ -25,6 +20,9 @@ struct EmojiMemoryGameView: View {
                             .onTapGesture {
                                 withAnimation(.linear(duration: 0.5)){
                                     viewModel.chooseCard(card: card)
+                                    if viewModel.gameWon{
+                                        showGameWonAlert = true
+                                    }
                                 }
                            }
                             .aspectRatio(2/3, contentMode: .fit)
@@ -41,6 +39,13 @@ struct EmojiMemoryGameView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarTitle(viewModel.theme.name, displayMode: .inline)
             .navigationBarItems(trailing: Text("Score: \(viewModel.score)"))
+            .alert(isPresented: $showGameWonAlert, content: {
+                Alert(title: Text("Game Won!"),
+                      message: Text("Congratulations, you won the Game and finished with a score of \(viewModel.score)"),
+                      dismissButton: .default(Text("Restart")){
+                        viewModel.newGame()
+                      })
+            })
         }
     }
 }

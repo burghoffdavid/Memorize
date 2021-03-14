@@ -10,8 +10,8 @@ import Foundation
 struct MemoryGame<CardContent> where CardContent: Equatable {
     private(set) var cards: Array<Card>
     private(set) var score: Int = 0
-    private (set) var numberOfMismatchedCards = 0
-
+    private(set) var numberOfMismatchedCards = 0
+    private(set) var gameWon: Bool = false
 
     private var indexOfTheOneAndOnlyFaceUpCard: Int?{
         get {
@@ -39,6 +39,9 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
             }else{
                 indexOfTheOneAndOnlyFaceUpCard = chosenIndex
             }
+        }
+        if !cards.map({$0.isMatched}).contains(false){
+            gameWon = true
         }
     }
 
